@@ -3,20 +3,89 @@
   src: url('../fonts/font.ttf');
 }
 
-body {
+@-webkit-keyframes acidmove {
+  0%   {left:-10px; opacity: 0.3;}
+  5%  {left:-5px; opacity: 0.4;}
+  10%  {left:-8px; opacity: 0.3;}
+  15%  {left:-4px; opacity: 0.1;}
+  20%  {left:-5px; opacity: 0.1;}
+  25%  {left:-4px; opacity: 0.1;}
+  30%  {left:-9px; opacity: 0.2;}
+  35%  {left:-6px; opacity: 0.4;}
+  40%  {left:-3px; opacity: 0.2;}
+  45%  {left:-8px; opacity: 0.2;}
+  100% {left:-4px; opacity: 0.2;}
+}
+
+@-webkit-keyframes acidmove-retina {
+    0%   {left:-11px; opacity: 0.3;}
+    5%  {left:-6px; opacity: 0.4;}
+    10%  {left:-9px; opacity: 0.3;}
+    15%  {left:-6px; opacity: 0.1;}
+    20%  {left:-4px; opacity: 0.1;}
+    25%  {left:-4px; opacity: 0.1;}
+    30%  {left:-9px; opacity: 0.2;}
+    35%  {left:-6px; opacity: 0.4;}
+    40%  {left:-3px; opacity: 0.2;}
+    45%  {left:-8px; opacity: 0.2;}
+    100% {left:-4px; opacity: 0.2;}
+}
+
+@-webkit-keyframes static {
+  0%   {top: 0; height: 0; opacity: 0.5;}
+  10%  {top: 0; height: 10%;}
+  11%  {opacity: 0.8;}
+  12%  {opacity: 0.5;}
+  20%  {opacity: 0.3;}
+  21%  {opacity: 0.8;}
+  23%  {opacity: 0.3;}
+  41%  {opacity: 0.7;}
+  44%  {opacity: 0.6;}
+  50%  {opacity: 0.4;}
+  60%  {opacity: 0.3;}
+  61%  {opacity: 0.5;}
+  63%  {opacity: 0.6;}
+  90%  {top: 90%; height: 10%;}
+  100% {top: 100%; height: 0; opacity: 0.5;}
+}
+
+@-webkit-keyframes static-retina {
+    0%   {top: 0; height: 0; opacity: 0.5;}
+    10%  {top: 0; height: 10%;}
+    11%  {opacity: 0.7;}
+    12%  {opacity: 0.6;}
+    20%  {opacity: 0.3;}
+    21%  {opacity: 0.7;}
+    23%  {opacity: 0.3;}
+    41%  {opacity: 0.7;}
+    44%  {opacity: 0.5;}
+    50%  {opacity: 0.4;}
+    60%  {opacity: 0.3;}
+    61%  {opacity: 0.5;}
+    63%  {opacity: 0.7;}
+    90%  {top: 90%; height: 10%;}
+    100% {top: 100%; height: 0; opacity: 0.5;}
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: black;
+  background-image: url('./bg-noise.png');
   color: #ff8012;
-  font-size: 2.2vh;
   font-family: 'Apple II';
   line-height: 4vh;
-  /* screen glow */
-  background-image: radial-gradient(
-    #1f0b00, black 120%
-  );
-  /* text glow */
   text-shadow: 0 0 5px rgba(255, 78, 0, 0.6);
 }
 
-/* scanlines */
 body::after {
   content: '';
   position: fixed;
@@ -28,62 +97,139 @@ body::after {
   z-index: -1;
 }
 
-/* scrollbar */
-::-webkit-scrollbar {
-  width: 1vw;
+::selection {
+  background: #e00000;
+  color: black;
 }
 
-::-webkit-scrollbar-track {
-  background: #000;
+pre {
+  margin: 0;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #000;
+.content {
+  z-index: 100;
+  background-image: url('./line.png');
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  min-height: 100%;
+  padding-bottom: 100px;
 }
 
-.img {
-  white-space: pre;
+.fuzz {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(80,80,80,0.2);
+  z-index: 20;
+  height: 0;
+  transform: translate3d(0,0,0);
+  pointer-events: none;
+}
+
+.content:last-child {
+  z-index: 1;
+  left: -2px;
+  opacity: 0.3;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1) {
+  .content:last-child {
+    -webkit-animation: acidmove 8s ease-in;
+    -webkit-animation-delay: 2s;
+    -webkit-animation-iteration-count: infinite;
+  }
+
+  .fuzz {
+    -webkit-animation: static 40s linear;
+    -webkit-animation-delay: 2s;
+    -webkit-animation-iteration-count: infinite;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .content:last-child {
+    -webkit-animation: acidmove-retina 8s ease-in;
+    -webkit-animation-delay: 2s;
+    -webkit-animation-iteration-count: infinite;
+  }
+
+  .fuzz {
+    -webkit-animation: static-retina 40s linear;
+    -webkit-animation-delay: 2s;
+    -webkit-animation-iteration-count: infinite;
+  }
+}
+
+.logo-area {
+  text-align: center;
+  margin-top: 60px;
+  text-shadow: 0 0 20px #e00000;
+}
+
+.logo {
+  font-size: 26px;
   display: inline-block;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  text-align: left;
 }
 
-#output {
-  padding: 2vw 2vw 0 2vw;
+.logo-area-quote {
+  font-family: 'VT323';
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-#output div {
-  margin-bottom: 1vw;
+.info-wrapper {
+  font-family: 'VT323';
+  font-size: 25px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 
-.input {
-  display: flex;
+.info {
+  display: inline-block;
+  width: 40em;
+  text-align: left;
 }
 
-a {
-  color: orange;
+.green {
+  color: #e00000;
+  text-shadow: 0 0 20px #e00000;
 }
 
-#input {
-  height: 4vh;
-  width: 98.5vh;
-  color: orange;
-  background: transparent;
-  font-size: 2vh;
-  font-family: "Apple II";
-  border: none;
-  position: relative;
-  bottom: 0.175vh;
-  margin-left: .5vw;
+.white {
+  color: #e6e6e6;
+  text-shadow: 0 0 20px rgba(230,230,230,0.5);
 }
 
-span {
-  margin-left: 2vw;
+.cyan {
+  color: #e65151;
+  text-shadow: 0 0 20px #e65151;
 }
 
-#input:focus {
-  outline: none;
+.yellow {
+  color: #ff4d94;
+  text-shadow: 0 0 20px #ff4d94;
+}
+
+.magenta {
+  color: #d76f30;
+  text-shadow: 0 0 20px #d76f30;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 @keyframes blink {
