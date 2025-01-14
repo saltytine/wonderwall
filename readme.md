@@ -17,17 +17,17 @@ An HTML-based text adventure game engine. Small and easy to use with no dependen
 Very little programming is required, but several JavaScript hooks are provided if you are inclined to use them!
 
 ### How do I use it?
-To create your own adventure, you can use one of the files in the [game-disks](https://github.com/okaybenji/text-engine/blob/main/game-disks) folder as a template. For example, take a look at [the disk called newDiskTemplate](https://github.com/okaybenji/text-engine/blob/main/game-disks/new-disk-template.js).
+To create your own adventure, you can use one of the files in the [game-disks](https://github.com/saltytine/wonderwall/blob/main/game-disks) folder as a template. For example, take a look at [the disk called newDiskTemplate](https://github.com/saltytine/wonderwall/blob/main/game-disks/new-disk-template.js).
 
-Include your "game disk" (a function returning JSON data) in index.html and load it with `loadDisk(myGameData)`. (Look at [index.html](https://github.com/okaybenji/text-engine/blob/main/index.html) in the repo for an example.)
+Include your "game disk" (a function returning JSON data) in index.html and load it with `loadDisk(myGameData)`. (Look at [index.html](https://github.com/saltytine/wonderwall/blob/main/index.html) in the repo for an example.)
 
-The end product will be your very own text adventure game, similar to [this one](http://okaybenji.github.io/text-engine). It's a good idea to give that game a try to get introduced to the engine.
+The end product will be your very own text adventure game, similar to this one. It's a good idea to give that game a try to get introduced to the engine.
 
 ![Demo Screenshot](screenshot.gif "Demo Screenshot")
 
 `text-engine` uses a disk metaphor for the data which represents your game, like the floppy disks of yore.
 
-Including [index.js](https://github.com/okaybenji/text-engine/blob/main/index.js) from this repository in your [index.html](https://github.com/okaybenji/text-engine/blob/main/index.html) `<script>` adds a several functions to the global namespace. One of these is called `loadDisk`. `loadDisk` accepts a single argument, which is your disk -- a function returning a JavaScript object (JSON).
+Including [index.js](https://github.com/saltytine/wonderwall/blob/main/index.js) from this repository in your [index.html](https://github.com/saltytine/wonderwall/blob/main/index.html) `<script>` adds a several functions to the global namespace. One of these is called `loadDisk`. `loadDisk` accepts a single argument, which is your disk -- a function returning a JavaScript object (JSON).
 
 ## Disks
 A disk is a function which returns a JavaScript object that describes your game. At minimum, that object must have these two top-level properties:
@@ -137,11 +137,11 @@ Topics can have these other optional properties as well:
 That's everything! If you've made a JSON object with a `roomId` and a list of `rooms` -- that is, a disk -- you've got a playable game!
 
 ### How do I play it?
-Just pass a reference to your disk to the loadDisk function. Take a look at [index.html](https://github.com/okaybenji/text-engine/blob/main/index.html) to see an example.
+Just pass a reference to your disk to the loadDisk function. Take a look at [index.html](https://github.com/saltytine/wonderwall/blob/main/index.html) to see an example.
 
-I've saved my disk to a `const` variable called `demoDisk` in [game-disks/demo-disk.js](https://github.com/okaybenji/text-engine/blob/main/game-disks/demo-disk.js). I've included that file and `index.js` in my HTML file, and added a script tag with a single line to call `loadDisk(demoDisk)`. The game boots when [index.html](https://github.com/okaybenji/text-engine/blob/main/index.html) is loaded in a web browser.
+I've saved my disk to a `const` variable called `demoDisk` in [game-disks/demo-disk.js](https://github.com/saltytine/wonderwall/blob/main/game-disks/demo-disk.js). I've included that file and `index.js` in my HTML file, and added a script tag with a single line to call `loadDisk(demoDisk)`. The game boots when [index.html](https://github.com/saltytine/wonderwall/blob/main/index.html) is loaded in a web browser.
 
-You can use the included [index.html](https://github.com/okaybenji/text-engine/blob/main/index.html) file in your own project, or you can create your own.
+You can use the included [index.html](https://github.com/saltytine/wonderwall/blob/main/index.html) file in your own project, or you can create your own.
 
 #### Making your own HTML file
 
@@ -257,7 +257,7 @@ Every command a player can issue in the game has a corresponding function in tex
 
 For instance, there's a function called "go" that gets called when the player types GO.
 
-You can add your own custom commands as well. Take a look at [the "unlock" command in game-disks/demo-disk.js](https://github.com/okaybenji/text-engine/blob/main/game-disks/demo-disk.js#L478-L495) for an example.
+You can add your own custom commands as well. Take a look at [the "unlock" command in game-disks/demo-disk.js](https://github.com/saltytine/wonderwall/blob/main/game-disks/demo-disk.js#L478-L495) for an example.
 
 #### Overriding the default command set
 If existing commands don't work how you want them to, you can override them by reassigning them to your own function code.
@@ -292,7 +292,7 @@ commands = [{walk: () => println(‘you walk’), talk: () => println(‘you tal
 If you do remove some or all of the default commands, you'll want to override the `help` function as well so that it doesn't list commands which are not supported by your game.
 
 ### Other Functions
-There are several other functions available in the engine! Feel free to take a peek at the [source code](https://github.com/okaybenji/text-engine/blob/main/index.js). It's designed to be open and simple to use and to customize.
+There are several other functions available in the engine! Feel free to take a peek at the [source code](https://github.com/saltytine/wonderwall/blob/main/index.js). It's designed to be open and simple to use and to customize.
 
 ### A word of caution regarding SAVE/LOAD
 The default implementation of saving and loading games in text-engine is quite simple. All the commands a player has entered are stored in the save to be "played back" into the game in the same order on load. It's something like the game playing itself back to the point where you left off, instantaneously.
@@ -325,7 +325,7 @@ const myDisk = () => ({
 });
 ```
 
-By the way, if you preferred the old save system (which serialized the game state), you can always grab its code [here](https://github.com/okaybenji/text-engine/blob/cd8d0acc87040d1dcff7f5dcd5a38e3563d8d310/index.js#L74-L104).
+By the way, if you preferred the old save system (which serialized the game state), you can always grab its code [here](https://github.com/saltytine/wonderwall/blob/cd8d0acc87040d1dcff7f5dcd5a38e3563d8d310/index.js#L74-L104).
 
 ## Etc.
 ### Useful Tools
@@ -346,4 +346,4 @@ By the way, if you preferred the old save system (which serialized the game stat
 * 2.0.0: Added characters, conversations, auto-complete, `items` command, `save` & `load` commands, navigation shortcuts, global methods for utility or overriding, support for custom commands, `onLook` & `onTalk` callbacks, upgraded `go` command, support for `blocks` on exits, support for providing class name to `println` function, support for randomizing printed lines, bold/italic/underline text, various bug fixes & improvements.
 * 1.3.0: Rooms can define `onEnter` methods.
 * 1.2.0: New orange default theme.
-* 1.1.1: Now supports use in other operating environments besides the DOM. See [text-engine-node](https://github.com/okaybenji/text-engine-node) for example usage. (Planning to add documentation later.)
+* 1.1.1: Now supports use in other operating environments besides the DOM. (Planning to add documentation later.)
